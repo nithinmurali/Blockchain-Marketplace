@@ -94,7 +94,6 @@ services:
         - ./crypto-config/peerOrganizations/seller.om.com/peers/peer0.seller.om.com/:/etc/hyperledger/msp/peerOrg1
         - ./crypto-config/peerOrganizations/marketplace.om.com/peers/peer0.marketplace.om.com/:/etc/hyperledger/msp/peerOrg1
         - ./crypto-config/peerOrganizations/logistics.om.com/peers/peer0.logistics.om.com/:/etc/hyperledger/msp/peerOrg1
-
     networks:
       - basic
 
@@ -184,7 +183,7 @@ services:
       - CORE_PEER_ID=peer0.marketplace.om.com
       - CORE_LOGGING_PEER=debug
       - CORE_CHAINCODE_LOGGING_LEVEL=DEBUG
-      - CORE_PEER_LOCALMSPID=SellerMSP
+      - CORE_PEER_LOCALMSPID=MarketplaceMSP
       - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/msp/peer/
       - CORE_PEER_ADDRESS=peer0.marketplace.om.com:7051
       # # the following setting starts chaincode containers on the same
@@ -223,7 +222,7 @@ services:
       - CORE_PEER_ID=peer0.logistics.om.com
       - CORE_LOGGING_PEER=debug
       - CORE_CHAINCODE_LOGGING_LEVEL=DEBUG
-      - CORE_PEER_LOCALMSPID=SellerMSP
+      - CORE_PEER_LOCALMSPID=LogisticsMSP
       - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/msp/peer/
       - CORE_PEER_ADDRESS=peer0.logistics.om.com:7051
       # # the following setting starts chaincode containers on the same
@@ -318,8 +317,8 @@ services:
       - CORE_LOGGING_LEVEL=DEBUG
       - CORE_PEER_ID=cli
       - CORE_PEER_ADDRESS=peer0.seller.om.com:7051
-      - CORE_PEER_LOCALMSPID=Org1MSP
-      - CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
+      - CORE_PEER_LOCALMSPID=CLIMSP
+      - CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/seller.om.com/users/Admin@seller.om.com/msp
       - CORE_CHAINCODE_KEEPALIVE=10
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
     command: /bin/bash
@@ -327,6 +326,7 @@ services:
         - /var/run/:/host/var/run/
         - ./../chaincode/:/opt/gopath/src/github.com/
         - ./crypto-config:/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/
+        - ./config:/etc/hyperledger/configtx
     networks:
         - basic
     #depends_on:
