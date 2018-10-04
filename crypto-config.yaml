@@ -1,0 +1,34 @@
+OrdererOrgs:
+  - Name: Orderer
+    Domain: om.com
+    Specs:
+      - Hostname: orderer
+
+PeerOrgs:
+  - Name: Seller
+    Domain: seller.om.com
+    Template:
+      Count: 1
+    Users:
+      Count: 1
+
+  - Name: Buyer
+    Domain: buyer.om.com
+    Template:
+      Count: 1
+    Users:
+      Count: 1
+
+  - Name: Marketplace
+    Domain: marketplace.om.com
+    Template:
+      Count: 1
+    Users:
+      Count: 1
+
+  - Name: Logistics
+    Domain: logistics.om.com
+    Template:
+      Count: 1
+    Users:
+      Count: 1
